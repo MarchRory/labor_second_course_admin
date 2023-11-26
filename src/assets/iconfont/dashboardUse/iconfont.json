@@ -1,0 +1,30 @@
+{
+  "id": "4180586",
+  "name": "二课考评系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3930499",
+      "name": "学生",
+      "font_class": "xuesheng",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "7765168",
+      "name": "教师_大数据",
+      "font_class": "jiaoshi_dashuju",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "26742362",
+      "name": "麦穗",
+      "font_class": "maisui",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    }
+  ]
+}

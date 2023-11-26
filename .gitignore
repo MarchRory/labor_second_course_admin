@@ -1,3 +1,4 @@
+# souce code
 .DS_Store
 node_modules/
 dist/
@@ -7,7 +8,9 @@ yarn-error.log*
 package-lock.json
 tests/**/coverage/
 
-# Editor directories and files
+# IDE
+build
+.tests
 .idea
 .vscode
 .history

@@ -385,6 +385,7 @@ export default {
     this.getSemesterInfo();
     wordCloud(100).then((res) => {
       const { data } = res;
+      // data.push({ name: "思想政治教育", value: 500 });
       this.wordList = data;
       this.$nextTick(() => {
         this.initWordCloud();
@@ -432,6 +433,7 @@ export default {
             height: "90%",
             data: this.wordList,
           },
+          0,
         ],
       };
       this.wordCloudChart.setOption(wcOptions);
@@ -479,19 +481,11 @@ export default {
         .then(() => {
           this.watchChart = new ResizeObserver(() => {
             debunce(() => {
-              if (
-                this.userCountChart &&
-                this.categoryChart &&
-                this.rankChart &&
-                this.courseDataChart &&
-                this.wordCloudChart
-              ) {
-                this.userCountChart.resize();
-                this.categoryChart.resize();
-                this.rankChart.resize();
-                this.courseDataChart.resize();
-                this.wordCloudChart.resize();
-              }
+              this.userCountChart && this.userCountChart.resize();
+              this.categoryChart && this.categoryChart.resize();
+              this.rankChart && this.rankChart.resize();
+              this.courseDataChart && this.courseDataChart.resize();
+              this.wordCloudChart && this.wordCloudChart.resize();
             }, 300); // 280ms是侧边栏动画时间, 多加20ms
           });
           this.watchChart.observe(document.getElementById("pageContainer"));
@@ -522,6 +516,11 @@ export default {
             if (!this.categoryChart) {
               this.categoryChart = this.$echarts.init(this.$refs.categoryChart);
             }
+            /*             const tempData = [
+              { name: "校企协同育人", value: 6 },
+              { name: "家校协同育人", value: 9 },
+              { name: "导辅协同育人", value: 8 },
+            ]; */
             const categoryOptions = this.getCGCOptions(data);
             this.categoryChart.setOption(categoryOptions);
           } else {
@@ -573,6 +572,14 @@ export default {
             const dataY = ranklist.map((item) => {
               return item.score;
             });
+            /*const dataX = [
+              "计科院协同育人",
+              "凯捷公司协同育人",
+              "中海油专项协同育人",
+              "中石油实践基地",
+            ];
+
+            const dataY = [16, 20, 18, 22];*/
             if (!this.rankChart) {
               this.rankChart = this.$echarts.init(this.$refs.rkc);
             }
@@ -608,7 +615,7 @@ export default {
           type: "scroll",
           right: "5%",
           top: "7%",
-          data: ["当日发布课程数", "走势"],
+          data: ["当日发布课程数", "走势"], // ["当日发布课程数", "走势"]
           itemGap: 25,
           itemWidth: 16,
           itemHeight: 16,
@@ -640,7 +647,7 @@ export default {
         ],
         yAxis: [
           {
-            name: "课程数",
+            name: "课程数", // 课程
             nameTextStyle: {
               color: "rgba(0,0,0,0.45)",
               fontSize: 13,
@@ -672,7 +679,7 @@ export default {
         animation: false,
         series: [
           {
-            name: "当日发布课程数",
+            name: "当日发布课程数", // 课程数
             type: "bar",
             data: dataY,
             barWidth: "32px",
@@ -724,7 +731,7 @@ export default {
         },
         series: [
           {
-            name: "课程占比",
+            name: "课程占比", // 课程占比
             type: "pie",
             radius: [25, 85],
             center: ["50%", "40%"],

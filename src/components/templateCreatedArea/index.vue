@@ -309,7 +309,7 @@ export default {
       };
       return `<input type="button" class="templateBtn" onclick='insertText(event, ${JSON.stringify(
         params
-      )})' value="${text}">`;
+      )})' value="${text}" onContextmenu='event.preventDefault(); event.stopPropagation()'>`;
     },
     insertText(e, params) {
       if (this.insertDisabled || this.isContenteditable) {

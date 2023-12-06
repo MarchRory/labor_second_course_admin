@@ -221,10 +221,10 @@
             v-permission="['curriculum.signUp.update']"
             class="btn"
             v-debounce
-            :disabled="!isSubmitVisible"
             type="primary"
+            style="transition: opacity 0.3s ease-in"
             :style="{
-              opacity: isSubmitVisible,
+              opacity: isSubmitVisible ? 1 : 0,
             }"
             @click="handleEvaluate"
             >完成考评</el-button
@@ -345,7 +345,7 @@ export default {
       return -1;
     },
     isSubmitVisible() {
-      if (this.studentList.length) {
+      /*       if (this.studentList.length) {
         if (this.evaluateType == 0) return 1;
         else if (this.evaluateType == 1) return 0;
         else {
@@ -353,7 +353,8 @@ export default {
         }
       } else {
         return 0;
-      }
+      } */
+      return this.studentList.length !== 0 && this.evaluatable;
     },
   },
   methods: {
